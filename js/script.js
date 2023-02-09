@@ -2,7 +2,7 @@ const ropaComprar = document.getElementById("ropaComprar");
 const verCarrito = document.getElementById("verCarrito");
 const modalContainer = document.getElementById("modal-container");
 
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 productos.forEach((producto) => {
   let contenido = document.createElement("div");
@@ -29,6 +29,7 @@ productos.forEach((producto) => {
       precio: producto.precio,
     });
     console.log(carrito);
+    guardarLocal();
   });
 });
 
@@ -69,3 +70,12 @@ verCarrito.addEventListener("click", () => {
   totalCompras.innerHTML = `El total a pagar es de: $ ${total}`;
   modalContainer.append(totalCompras);
 });
+
+//Local Storage //
+//Set Item
+
+const guardarLocal = () => {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+};
+
+//Get Item
